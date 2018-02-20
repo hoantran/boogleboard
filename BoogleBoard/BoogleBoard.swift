@@ -75,7 +75,7 @@ class BoogleBoard {
 
   
   func start() {
-    var availableSquares = Array(repeating: Array(repeating: true, count: 2), count: 2)
+    var availableSquares = Array(repeating: Array(repeating: true, count: 3), count: 3)
     
     display?.setDimension(BoardSize(rowCount: availableSquares.count, colCount: availableSquares[0].count) )
     display?.setReceiver(self)

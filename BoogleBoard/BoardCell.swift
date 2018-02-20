@@ -47,17 +47,17 @@ class BoardCell: UICollectionViewCell {
     NSLayoutConstraint.activate([
       canvas.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
       canvas.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-      canvas.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -1),
-      canvas.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, constant: -1),
+      canvas.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -2),
+      canvas.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, constant: -2),
       ])
     
-    addSubview(textLabel)
-    NSLayoutConstraint.activate([
-      textLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-      textLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-      textLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
-      textLabel.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
-      ])
+//    addSubview(textLabel)
+//    NSLayoutConstraint.activate([
+//      textLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+//      textLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+//      textLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+//      textLabel.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),
+//      ])
   }
   
   required init?(coder aDecoder: NSCoder) {

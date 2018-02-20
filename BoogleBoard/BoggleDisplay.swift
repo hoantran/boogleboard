@@ -63,14 +63,7 @@ extension MainViewController: BoogleBoardDisplay {
   
   func setPath(_ path: [Square]) {
     print(path)
-    
-    if Thread.isMainThread {
-      print("---- MAIN ----")
-    } else {
-      print("...NON...")
-    }
     resetCells()
-    sleep(1)
     
     var from:CanvasDirection = .start
     
@@ -94,8 +87,7 @@ extension MainViewController: BoogleBoardDisplay {
     DispatchQueue.main.async {
       self.mainView.reloadData()
     }
-    
-
+    usleep(100000)
 
     displayClient?.pathDidDisplay()
   }

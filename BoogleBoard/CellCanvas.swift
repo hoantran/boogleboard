@@ -28,11 +28,7 @@ enum CanvasDirection:String {
 }
 
 class CellCanvas: UIView {
-  var vector: PathVector? {
-    didSet {
-      setNeedsDisplay()
-    }
-  }
+  var vector: PathVector?
   
   var lineWidth: CGFloat {
     let smaller = min(frame.width, frame.height)
@@ -40,15 +36,13 @@ class CellCanvas: UIView {
   }
   
   func eraseAll(frame: CGRect){
-    print("ERASE ALL")
-    
     let context = UIGraphicsGetCurrentContext()
     context?.clear(frame)
   }
   
 
   fileprivate func drawStart(_ rect: CGRect, _ path: UIBezierPath){
-    path.append(UIBezierPath(ovalIn: frame.insetBy(dx: 0.45*frame.width, dy: 0.45*frame.height)))
+    path.append(UIBezierPath(ovalIn: frame.insetBy(dx: 0.3*frame.width, dy: 0.3*frame.height)))
   }
   
   fileprivate func drawEnd(_ rect: CGRect, _ path: UIBezierPath){
@@ -140,6 +134,8 @@ class CellCanvas: UIView {
   }
   
   override func draw(_ rect: CGRect) {
+    eraseAll(frame: frame)
+    
     if let vector = vector {
       if vector.from == .end {
         print("ERR: FROM can not be the end.")
@@ -149,9 +145,8 @@ class CellCanvas: UIView {
         draw(vector.from, rect)
         draw(vector.to, rect)
       }
-    } else {
-      eraseAll(frame: frame)
     }
+    
     setNeedsDisplay()
   }
   
