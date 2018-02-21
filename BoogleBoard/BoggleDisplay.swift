@@ -62,7 +62,6 @@ extension MainViewController: BoogleBoardDisplay {
   }
   
   func setPath(_ path: [Square]) {
-    print(path)
     resetCells()
     
     var from:CanvasDirection = .start
@@ -94,10 +93,6 @@ extension MainViewController: BoogleBoardDisplay {
   
   func setReceiver(_ client: BoogleBoardClient) {
     displayClient = client
-  }
-  
-  private func reset(){
-    
   }
   
 }

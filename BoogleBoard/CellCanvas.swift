@@ -35,9 +35,10 @@ class CellCanvas: UIView {
     return max(smaller*0.1, 1)
   }
   
-  func eraseAll(frame: CGRect){
+  func eraseAll(rect: CGRect){
     let context = UIGraphicsGetCurrentContext()
-    context?.clear(frame)
+//    context?.clear(rect)
+    context?.clear(frame.insetBy(dx: -1, dy: -1))
   }
   
 
@@ -134,7 +135,7 @@ class CellCanvas: UIView {
   }
   
   override func draw(_ rect: CGRect) {
-    eraseAll(frame: frame)
+    eraseAll(rect: frame)
     
     if let vector = vector {
       if vector.from == .end {

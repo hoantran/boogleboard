@@ -13,7 +13,7 @@ typealias BoardSize = (rowCount: Int, colCount: Int)
 class MainViewController: UIViewController {
   var cellVectors: [PathVector]?
   
-  let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+  let sectionInsets = UIEdgeInsets(top: 6.0, left: 6.0, bottom: 6.0, right: 6.0)
   weak var displayClient: BoogleBoardClient?
   private var boogleBoard: BoogleBoard?
   
@@ -24,7 +24,6 @@ class MainViewController: UIViewController {
   }
   
   func resetCells(){
-    print("RESETING CELLS")
     var size = 0
     if let boardSize = self.boardSize {
       size = boardSize.colCount * boardSize.rowCount
@@ -45,8 +44,33 @@ class MainViewController: UIViewController {
     v.backgroundColor = UIColor.black
     v.dataSource = self
     v.delegate = self
+    
+    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRight))
+    swipeRight.direction = .right
+    v.addGestureRecognizer(swipeRight)
+    
+    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeft))
+    swipeRight.direction = .left
+    v.addGestureRecognizer(swipeLeft)
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+    tap.numberOfTapsRequired = 1
+    v.addGestureRecognizer(tap)
+
     return v
   }()
+  
+  @objc fileprivate func handleSwipeRight(){
+    print("RIGHT")
+  }
+  
+  @objc fileprivate func handleSwipeLeft(){
+    print("LEFT")
+  }
+  
+  @objc fileprivate func handleTap(){
+    print("TAP")
+  }
   
   fileprivate func layoutMainView() {
     view.addSubview(mainView)

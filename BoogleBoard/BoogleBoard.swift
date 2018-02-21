@@ -14,6 +14,7 @@ class BoogleBoard {
   weak var display:BoogleBoardDisplay?
   
   private var count = 0
+  private var paths = [[Square]]()
   
   private func isLegal(square: Square, rowCount: Int, colCount: Int) -> Bool {
     return square.col >= 0 && square.row >= 0 && square.col < colCount && square.row < rowCount
@@ -57,25 +58,33 @@ class BoogleBoard {
     }
 
     if valids.count == 0 {
-      print("[\(count)]")
+//      print("[\(count)]")
       display?.setPath(path)
+      paths.append(path)
       count += 1
-    }
-
-    while valids.count > 0 {
-      let next = valids.removeFirst()
-      arry[next.row][next.col] = false
-      path.append(next)
-      //    print(" [\(next.row)][\(next.col)]")
-      search(path: &path, arry: &arry)
-      arry[next.row][next.col] = true
-      path.removeLast()
+    } else {
+      while valids.count > 0 {
+        let next = valids.removeFirst()
+        arry[next.row][next.col] = false
+        path.append(next)
+        //    print(" [\(next.row)][\(next.col)]")
+        search(path: &path, arry: &arry)
+        arry[next.row][next.col] = true
+        path.removeLast()
+      }
     }
   }
 
+  func fetch()->[Square]? {
+    if paths.count > 0 {
+      return paths.removeFirst()
+    } else {
+      return nil
+    }
+  }
   
   func start() {
-    var availableSquares = Array(repeating: Array(repeating: true, count: 3), count: 3)
+    var availableSquares = Array(repeating: Array(repeating: true, count: 4), count: 2)
     
     display?.setDimension(BoardSize(rowCount: availableSquares.count, colCount: availableSquares[0].count) )
     display?.setReceiver(self)
